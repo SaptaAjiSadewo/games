@@ -1,0 +1,525 @@
+/* Gaya Neo Brutalism */
+:root {
+    --primary: #FF6B6B;
+    --secondary: #4ECDC4;
+    --accent: #FFE66D;
+    --dark: #292F36;
+    --light: #F7FFF7;
+    --shadow: 8px 8px 0px #000000;
+    --warrior: #FF6B6B;
+    --archer: #4ECDC4;
+    --healer: #FFE66D;
+    --heal-spell: #77DD77;
+    --poison-spell: #9B5DE5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--light);
+    color: var(--dark);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: var(--primary);
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Tata Letak Baru: Kartu Karakter di Atas */
+.top-cards {
+    margin-bottom: 20px;
+}
+
+/* Area Tengah: Papan Musuh dan Pemain + Kontrol */
+.middle-area {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.enemy-board, .player-board {
+    flex: 1;
+    background-color: var(--accent);
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+    padding: 15px;
+}
+
+.enemy-board {
+    background-color: #ffcccc;
+}
+
+.player-board {
+    background-color: #ccffcc;
+}
+
+/* Area Player dengan Kontrol di Samping */
+.player-area {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+
+.player-area .player-board {
+    flex: 2;
+}
+
+.player-area .controls {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--secondary);
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    min-height: 300px;
+}
+
+.board-label {
+    position: absolute;
+    top: 0px;
+    left: 15px;
+    background-color: inherit;
+    padding: 0 10px;
+    font-weight: bold;
+    font-size: 1rem;
+    z-index: 10;
+}
+
+/* Area Kembalikan */
+.return-area {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 120px;
+    height: 60px;
+    background-color: #ff9999;
+    border: 3px dashed var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.return-area:hover {
+    background-color: #ff7777;
+}
+
+.enemy-board .return-area {
+    background-color: #ff9999;
+}
+
+/* Tata Letak Baru: Kartu Musuh di Bawah */
+.bottom-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row-label {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    background-color: var(--secondary);
+    border: 2px solid var(--dark);
+    box-shadow: var(--shadow);
+    width: fit-content;
+}
+
+.character-deck, .special-deck, .enemy-deck {
+    background-color: var(--secondary);
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    padding: 15px;
+    min-height: 180px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    align-content: start;
+}
+
+.special-deck {
+    background-color: #CF9FFF;
+}
+
+.enemy-deck {
+    background-color: #ffaaaa;
+}
+
+/* Gaya Kartu */
+.card {
+    width: 100px;
+    height: 140px;
+    background-color: white;
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    border-radius: 8px;
+    cursor: grab;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px;
+    transition: transform 0.1s ease;
+    user-select: none;
+    position: relative;
+}
+
+.card:active {
+    cursor: grabbing;
+    transform: rotate(3deg) scale(1.05);
+}
+
+/* Warna Kartu Berdasarkan Jenis */
+.card.warrior {
+    border-color: var(--warrior);
+}
+
+.card.archer {
+    border-color: var(--archer);
+}
+
+.card.healer {
+    border-color: var(--healer);
+}
+
+.card.heal-spell {
+    border-color: var(--heal-spell);
+}
+
+.card.poison-spell {
+    border-color: var(--poison-spell);
+}
+
+.card.enemy-card {
+    border-color: #ff6666;
+}
+
+.card-header, .card-footer {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.card-body {
+    text-align: center;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+/* Kontrol */
+.controls {
+    margin-top: 0;
+}
+
+.controls button {
+    width: 100%;
+    padding: 12px;
+    background-color: var(--primary);
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.controls button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.controls button:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px #000000;
+}
+
+.controls button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: var(--shadow);
+}
+
+.instructions {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+}
+
+.instructions h2 {
+    margin-bottom: 10px;
+}
+
+.instructions ul {
+    margin-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+}
+
+.battle-log {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.battle-log h3 {
+    margin-bottom: 10px;
+}
+
+.log-content {
+    font-size: 0.9rem;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    padding: 5px;
+    border-left: 3px solid var(--dark);
+    padding-left: 10px;
+}
+
+/* Karakter di Papan */
+.character {
+    width: 100px;
+    height: 120px;
+    border: 3px solid var(--dark);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    position: absolute;
+    transition: all 0.3s ease;
+    cursor: grab;
+}
+
+.character:active {
+    cursor: grabbing;
+}
+
+.character.warrior {
+    background-color: var(--warrior);
+}
+
+.character.archer {
+    background-color: var(--archer);
+}
+
+.character.healer {
+    background-color: var(--healer);
+}
+
+.character.enemy {
+    background-color: #ff9999;
+}
+
+.health-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #ccc;
+    border: 1px solid var(--dark);
+}
+
+.health-fill {
+    height: 100%;
+    background-color: #4CAF50;
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+.character-name {
+    font-weight: bold;
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.character-stats {
+    font-size: 0.7rem;
+    text-align: center;
+}
+
+.enemy-slot {
+    width: 120px;
+    height: 160px;
+    border: 3px dashed var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 10px;
+}
+
+/* Status Effects */
+.poisoned {
+    background-color: #9B5DE5 !important;
+    color: white;
+}
+
+.poison-dot {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background-color: var(--poison-spell);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+/* Animasi */
+@keyframes attack {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+    100% { transform: translateX(0); }
+}
+
+.attacking {
+    animation: attack 0.5s ease;
+}
+
+@keyframes takeDamage {
+    0% { background-color: inherit; }
+    50% { background-color: #ff0000; }
+    100% { background-color: inherit; }
+}
+
+.taking-damage {
+    animation: takeDamage 0.5s ease;
+}
+
+@keyframes heal {
+    0% { background-color: inherit; }
+    50% { background-color: #00ff00; }
+    100% { background-color: inherit; }
+}
+
+.healing {
+    animation: heal 0.5s ease;
+}
+
+@keyframes poison {
+    0% { background-color: inherit; }
+    50% { background-color: #9B5DE5; }
+    100% { background-color: inherit; }
+}
+
+.poisoning {
+    animation: poison 0.5s ease;
+}
+
+.mana-cost {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--secondary);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.spell-cost {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: var(--heal-spell);
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+.enemy-cost {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #ff6666;
+    border: 2px solid var(--dark);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+}

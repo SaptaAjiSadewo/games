@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Card Game Neo Brutalism</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RPG Card Game Neo Brutalism</h1>
+            <div class="game-info">
+                <div class="player-stats">
+                    <span>Player HP: <span id="playerHp">100</span></span>
+                    <span>Mana: <span id="playerMana">50</span></span>
+                </div>
+                <div class="enemy-stats">
+                    <span>Enemy HP: <span id="enemyHp">100</span></span>
+                </div>
+            </div>
+        </header>
+        
+        <!-- Baris 1: Kartu Karakter -->
+        <div class="top-cards">
+            <div class="card-row">
+                <div class="row-label">Kartu Karakter</div>
+                <div class="character-deck" id="characterDeck">
+                    <!-- Kartu karakter akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Baris 2: Area Papan untuk Musuh dan Pemain + Kontrol -->
+        <div class="middle-area">
+            <div class="enemy-board" id="enemyBoard">
+                <div class="board-label">Area Musuh</div>
+                <div class="enemy-slot" id="enemySlot">Taruh Musuh Di Sini</div>
+                <div class="return-area" id="enemyReturnArea">
+                    <div>⬅ Kembalikan</div>
+                </div>
+            </div>
+            
+            <div class="player-area">
+                <div class="player-board" id="playerBoard">
+                    <div class="board-label">Area Pemain</div>
+                    <!-- Karakter pemain akan muncul di sini -->
+                </div>
+                <div class="controls">
+                    <button id="resetBtn">Reset Game</button>
+                    <button id="addCardBtn">Tambah Kartu Karakter</button>
+                    <button id="spawnEnemyBtn">Panggil Musuh</button>
+                    <button id="endTurnBtn">Akhir Giliran</button>
+                    <button id="addEnemyCardBtn">Tambah Kartu Musuh</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Baris 3: Kartu Musuh -->
+        <div class="bottom-cards">
+            <div class="card-row">
+                <div class="row-label">Kartu Musuh</div>
+                <div class="enemy-deck" id="enemyDeck">
+                    <!-- Kartu musuh akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Baris 4: Kartu Spesial -->
+            <div class="card-row">
+                <div class="row-label">Kartu Spesial</div>
+                <div class="special-deck" id="specialDeck">
+                    <!-- Kartu spesial akan di-generate oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="battle-log" id="battleLog">
+            <h3>Log Pertempuran:</h3>
+            <div class="log-content"></div>
+        </div>
+        
+        <div class="instructions">
+            <h2>Cara Bermain:</h2>
+            <ul>
+                <li>Seret kartu karakter dari atas ke area pemain untuk memanggil karakter</li>
+                <li>Seret kartu musuh dari bawah ke area musuh untuk memanggil musuh</li>
+                <li>Setiap kartu memiliki peran: Warrior (tinggi HP), Archer (serangan jarak jauh), Healer (memulihkan HP)</li>
+                <li>Gunakan kartu spesial untuk efek tambahan: Heal (memulihkan HP) dan Poison (meracuni musuh)</li>
+                <li>Seret karakter/musuh ke area "Kembalikan" untuk mengembalikan ke deck</li>
+                <li>Karakter akan secara otomatis menyerang musuh yang ada</li>
+                <li>Gunakan tombol "Akhir Giliran" untuk menyelesaikan giliran dan mengisi ulang mana</li>
+                <li>Hancurkan semua musuh untuk menang!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="javascript.js"></script>
+</body>
+</html>
