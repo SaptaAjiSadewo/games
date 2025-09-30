@@ -1,8 +1,12 @@
 # 🎮 RPG Card Game - Neo Brutalism
 
-Game kartu RPG dengan tema neo-brutalism yang memungkinkan pemain untuk mengumpulkan kartu karakter, memanggil musuh, dan bertarung dalam pertempuran strategis.
+Game Modular Javascript kartu RPG dengan tema neo-brutalism yang memungkinkan pemain untuk mengumpulkan kartu karakter, memanggil musuh, dan bertarung dalam pertempuran strategis dengan neo-brutalism design.
 
-## ✨ Fitur Utama
+## 🚀 Live Demo
+[https://saptaajisadewo.github.io/games/]
+
+
+## ✨ Fitur Utama - User Feature
 
 - **🎴 Sistem Kartu Dinamis**: Drag & drop kartu karakter dan musuh
 - **⚔️ Multiple Character Classes**: Warrior, Archer, dan Healer dengan kemampuan unik
@@ -11,6 +15,14 @@ Game kartu RPG dengan tema neo-brutalism yang memungkinkan pemain untuk mengumpu
 - **🎨 Desain Neo Brutalism**: Estetika bold dengan warna kontras dan shadow tegas
 - **🔄 Mekanik Pengembalian**: Kembalikan karakter/musuh ke deck
 - **📊 Sistem Mana & Giliran**: Manajemen resource strategis
+
+## ✨ Developer Feature
+- **Modular ES6 Architecture** - Clean, maintainable code structure
+- **Drag & Drop Gameplay** - Intuitive card-based interactions
+- **Multiple Character Classes** - Warrior, Archer, Healer with unique abilities
+- **Strategic Combat** - Turn-based battles with mana management
+- **Special Card Effects** - Heal and Poison spells
+- **Neo Brutalism UI** - Bold, high-contrast visual design
 
 ## 🛠️ Teknologi yang Digunakan
 
@@ -24,12 +36,13 @@ Game kartu RPG dengan tema neo-brutalism yang memungkinkan pemain untuk mengumpu
 ### Opsi 1: Local Development
 ```bash
 # Clone repository
-git clone https://github.com/username/rpg-card-game.git
+git clone https://github.com/SaptaAjiSadewo/games.git
 
 # Masuk ke direktori project
-cd rpg-card-game
+cd games
 
 # Buka file index.html di browser
+dengan live-preview atau live server
 ```
 
 ### Opsi 2: Direct File
@@ -78,13 +91,19 @@ cd rpg-card-game
 
 ```
 rpg-card-game/
-├── index.html          # Main HTML structure
-├── style.css           # Neo brutalism styling
-├── javascript.js           # Game logic & mechanics
-└── README.md          # Documentation
+├── index.html        # Main HTML structure
+├── style.css         # Neo brutalism styling
+├── README.md         # Project documentation
+└── js/               # Modular JavaScript
+├── main.js           # Application entry point
+├── gameState.js      # Game state management
+├── cardManager.js    # Card creation & management
+├── battleSystem.js   # Combat logic & turn management
+├── uiManager.js      # UI rendering & updates
+└── dragDrop.js       # Drag and drop handlers
 ```
 
-### File Structure Details
+### File Structure Details - Old version
 
 - **index.html**: Struktur utama dengan area game terbagi:
   - Header dengan game info
@@ -159,6 +178,14 @@ let gameState = {
 - [ ] Sound effects
 - [ ] Mobile responsiveness improvements
 
+## 🔮 Planned Features
+- Deck building system
+- More character classes
+- Enhanced animations
+- Sound effects
+- Mobile responsiveness
+- Save/load functionality
+
 ## 🤝 Kontribusi
 
 Kontribusi dipersilakan! Untuk berkontribusi:
@@ -170,8 +197,6 @@ Kontribusi dipersilakan! Untuk berkontribusi:
 5. Open Pull Request
 
 ## 📝 Commit History
-
-Berikut adalah contoh struktur commit yang digunakan dalam pengembangan:
 
 ```
 feat: initialize project structure with HTML base
@@ -199,5 +224,10 @@ Dikembangkan dengan ❤️ menggunakan HTML, CSS, dan JavaScript.
 
 **Tips**: Untuk pengalaman terbaik, gunakan browser modern dengan dukungan ES6+ dan pastikan JavaScript diaktifkan.
 
-**Dibuat oleh**
-Sapta Aji Sadewo dan Deepseek di malah hari.....
+**👨‍💻 Dibuat oleh**
+- Sapta Aji Sadewo - Initial development
+- Deepseek - Modular architecture assistance
+- Sapta Aji Sadewo dan Deepseek di malah hari.....
+
+📄 License
+- This project is licensed under the MIT License - see the LICENSE file for details.
